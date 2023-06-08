@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Filtrar Comunicados</h1>
+
+    <form method="GET">
+        <div class="form-row">
+            <div class="col-md-4">
+                <label for="nivel">Nivel:</label>
+                <select id="nivel" name="nivel" class="form-control">
+                    <option value="">Todos</option>
+                    {% for nivel in niveles %}
+                        <option value="{{ nivel.0 }}" {% if nivel.0 == nivel_seleccionado %}selected{% endif %}>{{ nivel.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria" class="form-control">
+                    <option value="">Todas</option>
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria.id }}" {% if categoria.id == categoria_seleccionada %}selected{% endif %}>{{ categoria.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <h2>Comunicados Filtrados</h2>
+
+    {% for comunicado in comunicados %}
+        <div class="card">
+            <div class="card-header">
+                Correlativo: {{ comunicado.correlativo }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ comunicado.titulo }}</h5>
+                <p class="card-text">{{ comunicado.detalle }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <p>No se encontraron comunicados.</p>
+    {% endfor %}
+{% endblock %}
+

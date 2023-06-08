@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Listado de Comunicados</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Agrega aquí el formulario de filtrado por nivel y categoría -->
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Detalle</th>
+                        <th>Categoría</th>
+                        <th>Fecha de Envío</th>
+                        <th>Publicado Por</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comunicado in comunicados %}
+                        <tr>
+                            <td>{{ comunicado.titulo }}</td>
+                            <td>{{ comunicado.detalle }}</td>
+                            <td>{{ comunicado.categoria }}</td>
+                            <td>{{ comunicado.fecha_envio }}</td>
+                            <td>{{ comunicado.publicado_por }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
